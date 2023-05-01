@@ -1,0 +1,133 @@
+.main {
+  display: flex;
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  height: 100%;
+  color: var(--white);
+  column-gap: 10px;
+
+  h1 {
+    font-weight: 400;
+    margin-bottom: 10px;
+  }
+}
+
+.leftSide {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+
+.chart {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  color: var(--white);
+
+  h2 {
+    font-weight: 400;
+    margin-bottom: 10px;
+  }
+}
+
+.rightSide {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  row-gap: 20px;
+
+  h2 {
+    font-weight: 400;
+  }
+
+  .pagination {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+
+    .buttons {
+      display: flex;
+      align-items: center;
+      column-gap: 2px;
+      p {
+        font-size: 0.8rem;
+      }
+
+      button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 0;
+        color: var(--white);
+        background-color: transparent;
+        font-size: 1.5rem;
+        padding: 2px 10px;
+        text-align: center;
+      }
+    }
+  }
+}
+
+.changeTaxes {
+  display: flex;
+  column-gap: 20px;
+  height: 25vh;
+  overflow-x: auto;
+  padding: 20px 10px;
+
+  form {
+    display: flex;
+    background-color: #25252d;
+    flex-direction: column;
+    row-gap: 5px;
+    border-radius: 8px;
+    padding: 20px;
+    -webkit-box-shadow: 5px 3px 15px 3px rgba(0, 0, 0, 0.45);
+    box-shadow: 5px 3px 15px 3px rgba(0, 0, 0, 0.45);
+
+    input {
+      width: 270px;
+      height: 30px;
+      background-color: transparent;
+      outline: none;
+      border: 0;
+      color: var(--white);
+    }
+
+    button {
+      background-color: var(--white);
+      border: 0;
+      padding: 5px 20px;
+      width: 100px;
+      border-radius: 4px;
+      border: 1px solid var(--white);
+      align-self: flex-end;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+  }
+}
+
+@media (max-width: 1069px) {
+  .main {
+    min-width: 600px;
+    overflow-x: auto;
+
+    flex-direction: column;
+    .rightSide {
+      width: 100%;
+    }
+    .leftSide {
+      width: 100%;
+    }
+    .changeTaxes {
+      flex-direction: column;
+      height: auto;
+      row-gap: 30px;
+    }
+  }
+}

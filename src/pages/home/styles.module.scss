@@ -1,0 +1,225 @@
+.main {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  background-position: center;
+  background-size: cover;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    url("../../assets/car.jpg");
+  background-attachment: fixed;
+}
+
+.navBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1024px;
+  width: 100%;
+  height: 100px;
+  color: var(--white);
+  padding: 0px 15px;
+
+  h1 {
+    font-weight: 400;
+    font-size: 2rem;
+  }
+
+  button {
+    border: 0;
+    color: var(--white);
+    background-color: transparent;
+    border: 1px solid var(--white);
+    border-radius: 10px;
+    padding: 5px 40px;
+    transition: 0.5s;
+  }
+
+  button:hover {
+    transform: scale(1.1);
+  }
+}
+
+.mainContent {
+  width: 100%;
+  height: calc(100vh - 100px);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  row-gap: 1.5vh;
+  align-items: center;
+  color: var(--white);
+  text-align: center;
+
+  h1 {
+    font-size: 4rem;
+    font-weight: 400;
+  }
+
+  h2 {
+    font-size: 2rem;
+    font-weight: 400;
+  }
+
+  button {
+    cursor: pointer;
+    background-color: transparent;
+    border: 0;
+    color: var(--white);
+    border-bottom: 1px solid var(--primary);
+    padding: 10px 50px;
+    transition: 0.5s;
+    font-size: 1rem;
+  }
+
+  button:hover {
+    background-color: var(--primary);
+    opacity: 0.7;
+    border-radius: 4px;
+  }
+}
+
+.about {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 1024px;
+  margin: 0 auto;
+  column-gap: 5vw;
+  padding: 20px;
+}
+
+.aboutText {
+  color: var(--white);
+  font-weight: 400;
+  h2 {
+    margin-bottom: 2vh;
+  }
+  p {
+    font-size: 1rem;
+  }
+}
+
+.whyUs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 1024px;
+  margin: 0 auto;
+  column-gap: 5vw;
+  padding: 20px;
+}
+
+.devsImage {
+  background-position: center;
+  background-size: cover;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    url("../../assets/nightRoad.jpg");
+  background-attachment: fixed;
+}
+
+.devs {
+  display: flex;
+  flex-direction: column;
+  min-height: 50vh;
+  align-items: center;
+  justify-content: center;
+  max-width: 1024px;
+  margin: 0 auto;
+  color: var(--white);
+  font-weight: 400;
+
+  h2 {
+    margin: 60px 0px;
+    text-align: center;
+  }
+
+  span {
+    color: var(--primary);
+  }
+}
+
+.ourDevs {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  flex-wrap: wrap;
+  margin-bottom: 60px;
+  gap: 20px;
+
+  h4 {
+    font-size: 1.3rem;
+    text-align: center;
+  }
+}
+
+.contactUs {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  padding: 20px 10px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  max-width: 1024px;
+  margin: 0 auto;
+  color: var(--white);
+
+  span {
+    color: var(--primary);
+    cursor: pointer;
+  }
+}
+
+.footer {
+  color: var(--white);
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 5px;
+  padding: 20px 0px;
+  border-top: 1px solid var(--gray-200);
+}
+
+@media (max-width: 790px) {
+  .whyUs {
+    flex-direction: column-reverse;
+    img {
+      max-width: 430px;
+      max-height: 320px;
+    }
+  }
+
+  .about {
+    flex-direction: column;
+    max-width: 500px;
+    row-gap: 4vh;
+    img {
+      max-width: 430px;
+      max-height: 280px;
+    }
+  }
+}
+
+@media (max-width: 440px) {
+  .whyUs {
+    flex-direction: column-reverse;
+    row-gap: 4vh;
+    img {
+      max-width: 270px;
+      max-height: 220px;
+    }
+  }
+
+  .about {
+    flex-direction: column;
+    row-gap: 4vh;
+    img {
+      max-width: 270px;
+      max-height: 180px;
+    }
+  }
+}

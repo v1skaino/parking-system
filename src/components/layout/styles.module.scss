@@ -1,0 +1,101 @@
+.grid {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 118px auto;
+  grid-template-areas:
+    "NB"
+    "CT";
+}
+
+.content {
+  grid-area: "CT";
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 118px);
+  grid-auto-flow: row;
+  grid-auto-rows: 25%;
+  grid-template-rows: unset;
+  overflow: auto;
+  grid-template-columns: unset;
+  background-color: #30303c;
+}
+
+.navBar {
+  grid-area: "NB";
+  background-color: #25252d;
+  width: 100%;
+  height: 100%;
+  padding: 0px 10px;
+
+  .navContent {
+    background-color: #25252d;
+    color: var(--white);
+
+    margin: 0 auto;
+    max-width: 1024px;
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    h1 {
+      font-weight: 400;
+      font-size: 1.5rem;
+
+      span {
+        color: var(--primary);
+      }
+    }
+
+    .links {
+      display: flex;
+      column-gap: 2vw;
+
+      a {
+        transition: 0.5s;
+      }
+
+      a:hover {
+        color: var(--primary);
+        transform: scale(1.1);
+      }
+
+      .logOut {
+        align-self: center;
+      }
+
+      .logOut:hover {
+        color: var(--primary);
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+@media (max-width: 460px) {
+  .grid {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: auto auto;
+  }
+
+  .navBar {
+    .navContent {
+      flex-direction: column;
+
+      h1 {
+        margin-top: 10px;
+      }
+
+      .links {
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        row-gap: 10px;
+        margin: 10px 0;
+      }
+    }
+  }
+}

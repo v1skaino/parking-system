@@ -1,0 +1,22 @@
+.table {
+  width: 100%;
+
+  tr {
+    font-size: 0.9rem;
+    height: 50px;
+    text-align: center;
+    background-color: #25252d;
+    transition: 0.2s;
+  }
+
+  .tbody {
+    tr:hover {
+      color: var(--primary);
+      cursor: pointer;
+    }
+
+    tr:nth-child(even) {
+      background-color: #30303c;
+    }
+  }
+}
