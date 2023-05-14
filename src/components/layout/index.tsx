@@ -1,3 +1,4 @@
+import { signOut } from "next-auth/react";
 import Link from "next/link";
 import { ReactNode } from "react";
 import { FiLogOut } from "react-icons/fi";
@@ -22,7 +23,11 @@ export const Grid = ({ children }: TemplateProps) => {
             <Link href="/check-in">Check-in</Link>
             <Link href="/check-out">Check-out</Link>
             <Link href="/dashboard">Financeiro</Link>
-            <FiLogOut className={styles.logOut} size={18} />
+            <FiLogOut
+              onClick={() => signOut()}
+              className={styles.logOut}
+              size={18}
+            />
           </div>
         </div>
       </nav>

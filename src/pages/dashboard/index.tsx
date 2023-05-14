@@ -10,6 +10,7 @@ import {
   LinearScale,
   Tooltip,
 } from "chart.js";
+import { useSession } from "next-auth/react";
 import Head from "next/head";
 import { Bar } from "react-chartjs-2";
 import styles from "./styles.module.scss";
@@ -18,6 +19,7 @@ ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
 
 export default function Dashboard() {
   const { generateGreetings } = functions;
+  const { data: session } = useSession();
 
   const currencyOptions = {
     style: "currency",
@@ -96,7 +98,9 @@ export default function Dashboard() {
       </Head>
       <main className={styles.main}>
         <section className={styles.leftSide}>
-          <h1>{generateGreetings()}, Lucas!</h1>
+          <h1>
+            {generateGreetings()}, {session?.user?.name}!
+          </h1>
           <p>
             Aqui no painel financeiro você pode configurar valores e acompanhar
             o faturamento da sua empresa!

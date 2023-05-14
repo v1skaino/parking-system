@@ -1,8 +1,10 @@
 import { DevCard } from "@/components/devCard";
 import { functions } from "@/utils/functions";
 import { GetServerSideProps } from "next";
+import { signIn, useSession } from "next-auth/react";
 import Head from "next/head";
 import Image from "next/image";
+import { useRouter } from "next/router";
 import { BiCopyright } from "react-icons/bi";
 import grayCar from "../../assets/grayCar.png";
 import purpleCar from "../../assets/purpleCar.png";
@@ -10,7 +12,13 @@ import yellowCar from "../../assets/yellowCar.png";
 import styles from "./styles.module.scss";
 
 export default function Home() {
+  const route = useRouter();
   const email = "atendimento@seripark.com";
+  const { data: session, status } = useSession();
+
+  const handleNavigate = () => {
+    route.push("/dashboard");
+  };
 
   const handleSendEmail = async () => {
     return (window.location.href = `mailto:${email}`);
@@ -25,7 +33,13 @@ export default function Home() {
       <main className={styles.main}>
         <nav className={styles.navBar}>
           <h1>Seripark</h1>
-          <button>Acesse</button>
+          {status == "loading" ? (
+            <>...Carregando</>
+          ) : session ? (
+            <button onClick={() => handleNavigate()}>Acesse o painel</button>
+          ) : (
+            <button onClick={() => signIn("google")}>Acesse</button>
+          )}
         </nav>
         <section className={styles.mainContent}>
           <h1>Parking System</h1>
