@@ -1,23 +1,25 @@
 import { SvgCar } from "@/assets/car";
 import { SvgMotorcycle } from "@/assets/motorcycle";
 import styles from "./styles.module.scss";
-type DataType = {
+
+type Data = {
+  id: string;
   label: string;
   color: string;
   owner: string;
   model: string;
   brand: string;
+  type: string;
+  user: string;
 };
+interface Props {
+  data: Data;
+}
 
-type Props = {
-  vehicleType: "car" | "motorcycle";
-  data: DataType;
-};
-
-export function CardComponent({ data, vehicleType }: Props) {
+export function CardComponent({ data }: Props) {
   return (
     <article className={styles.card}>
-      {vehicleType == "car" ? (
+      {data?.type == "car" ? (
         <SvgCar color=" #ed0020" height="150px" width="150px" />
       ) : (
         <SvgMotorcycle color=" #ed0020" height="150px" width="150px" />
