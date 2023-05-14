@@ -10,16 +10,20 @@ import {
   LinearScale,
   Tooltip,
 } from "chart.js";
-import { useSession } from "next-auth/react";
+import { GetServerSideProps } from "next";
+import { getSession } from "next-auth/react";
 import Head from "next/head";
 import { Bar } from "react-chartjs-2";
 import styles from "./styles.module.scss";
 
 ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
 
-export default function Dashboard() {
+type DashboardProps = {
+  user: { username: string };
+};
+
+export default function Dashboard({ user }: DashboardProps) {
   const { generateGreetings } = functions;
-  const { data: session } = useSession();
 
   const currencyOptions = {
     style: "currency",
@@ -99,7 +103,7 @@ export default function Dashboard() {
       <main className={styles.main}>
         <section className={styles.leftSide}>
           <h1>
-            {generateGreetings()}, {session?.user?.name}!
+            {generateGreetings()}, {user?.username}!
           </h1>
           <p>
             Aqui no painel financeiro você pode configurar valores e acompanhar
@@ -157,3 +161,18 @@ export default function Dashboard() {
     </Grid>
   );
 }
+
+export const getServerSideProps: GetServerSideProps = async ({ req }) => {
+  const session = await getSession({ req });
+
+  if (!session?.user)
+    return { redirect: { destination: "/", permanent: false } };
+
+  return {
+    props: {
+      user: {
+        username: session?.user?.name,
+      },
+    },
+  };
+};

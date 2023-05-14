@@ -1,5 +1,7 @@
 import { CardComponent } from "@/components/card";
 import { Grid } from "@/components/layout";
+import { GetServerSideProps } from "next";
+import { getSession } from "next-auth/react";
 import Head from "next/head";
 import styles from "./styles.module.scss";
 type DataType = {
@@ -37,3 +39,17 @@ export default function Vehicles() {
     </Grid>
   );
 }
+export const getServerSideProps: GetServerSideProps = async ({ req }) => {
+  const session = await getSession({ req });
+
+  if (!session?.user)
+    return { redirect: { destination: "/", permanent: false } };
+
+  return {
+    props: {
+      user: {
+        username: session?.user?.name,
+      },
+    },
+  };
+};
