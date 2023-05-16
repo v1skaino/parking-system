@@ -5,6 +5,7 @@ import { collection, onSnapshot, query, where } from "firebase/firestore";
 import { GetServerSideProps } from "next";
 import { getSession } from "next-auth/react";
 import Head from "next/head";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import styles from "./styles.module.scss";
 
@@ -28,6 +29,7 @@ type Props = {
 
 export default function Vehicles({ user }: Props) {
   const [clients, setClients] = useState<DataType[]>([]);
+  const router = useRouter();
 
   useEffect(() => {
     async function loadTasks() {
@@ -70,7 +72,7 @@ export default function Vehicles({ user }: Props) {
           ) : (
             <h1>Nenhum cliente cadastrado</h1>
           )}
-          <button>+</button>
+          <button onClick={() => router.push("/vehicles/adicionar")}>+</button>
         </div>
         <div className={styles.cardLista}>
           {Array.isArray(clients) &&
