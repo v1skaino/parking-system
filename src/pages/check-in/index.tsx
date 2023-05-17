@@ -2,11 +2,11 @@ import { Grid } from "@/components/layout";
 import { GetServerSideProps } from "next";
 import { getSession } from "next-auth/react";
 
-import { CardComponent } from "@/components/card";
+import { ActionCardComponent } from "@/components/actionCard";
+import { handleAlert } from "@/components/alert";
 import { db } from "@/services/firebaseConnection";
 import { collection, onSnapshot, query, where } from "firebase/firestore";
 import Head from "next/head";
-import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import styles from "./styles.module.scss";
 
@@ -30,7 +30,19 @@ type Props = {
 
 export default function CheckIn({ user }: Props) {
   const [clients, setClients] = useState<DataType[]>([]);
-  const router = useRouter();
+
+  async function onCardClick(item: DataType) {
+    let result = await handleAlert({
+      icon: "question",
+      cancelButtonLabel: "Cancelar",
+      confirmButtonLabel: "Confirmar",
+      title: "Tem certeza que deseja realizar o checkin?",
+    });
+
+    if (!result) return;
+
+    //Lógica para realizar checkin no banco
+  }
 
   useEffect(() => {
     async function loadTasks() {
@@ -74,12 +86,18 @@ export default function CheckIn({ user }: Props) {
           ) : (
             <h1>Nenhum veículo disponível</h1>
           )}
-          <button onClick={() => router.push("/vehicles/adicionar")}>+</button>
         </div>
         <div className={styles.cardLista}>
           {Array.isArray(clients) &&
             clients.map((client) => {
-              return <CardComponent key={client.id} data={client} />;
+              return (
+                <ActionCardComponent
+                  onClick={() => onCardClick(client)}
+                  key={client.id}
+                  data={client}
+                  actionType="checkin"
+                />
+              );
             })}
         </div>
       </main>
